@@ -1,0 +1,53 @@
+<!-- TODO:
+    - Create text file of five-letter words
+    - Create ajax call to load file
+    - Create UI for various inputs and a submit button
+    - Display list of possible words
+ -->
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GFG</title>
+    <script>
+        let wordsList;
+        function loadWords() {
+            return new Promise((res, rej) => {
+                var client = new XMLHttpRequest();
+                client.open('GET', '/words.txt');
+                client.onreadystatechange = function() {
+                    if (client.status != 200) {
+                        console.error('OH NO')
+                        rej(client.responseText);
+                        return;
+                    }
+                    if (client.readyState == 4) {
+                        res(client.responseText);
+                        console.log(client.responseText.length);
+                        console.log({client});
+                        console.log('client.readyState', client.readyState)
+                    }
+                }
+                client.send();
+            });
+        }
+
+        function setWords(words) {
+            console.log({words});
+            wordsList = words.split('\n');
+            console.log(`Found ${wordsList.length} words`);
+            return wordsList;
+        }
+        window.onload = () => {
+            loadWords().then(setWords);
+        }
+    </script>
+</head>
+<body>
+    <h1>Hello World this is my first web page.</h1>
+</body>
+</html>
