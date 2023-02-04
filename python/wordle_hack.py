@@ -39,5 +39,5 @@ def hack_wordle(word: str):
 if __name__ == '__main__':
   args = parser.parse_args()
   word = args.word
-  # print('word', word)
-  hack_wordle('party')
+
+  hack_wordle(word)
