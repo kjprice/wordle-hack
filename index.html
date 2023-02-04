@@ -39,14 +39,15 @@
         }
         function setupForm() {
             document.querySelector('#words_form').style.display = 'block';
-            document.querySelector('#submit_words_form').onclick = findWords;            
+            document.querySelector('#words_form').onsubmit = findWords;
         }
 
         window.onload = () => {
             loadWords().then(setWords).then(setupForm);
         }
 
-        function findWords() {
+        function findWords(e) {
+            e.preventDefault();
             const exactLetters = document.querySelector('#exact_letters').value;
 
             if (exactLetters.length != 5) {
@@ -97,7 +98,7 @@
 </head>
 <body>
     <h1>Hello World this is my first web page.</h1>
-    <div id="words_form" style="display: none;">
+    <form id="words_form" style="display: none;">
         <div><label>Letters Positions*: <input type="text" id="exact_letters" value="pa_ty" /></label></div>
         <div>
             *Note: Provide space or underscore for unkown letters
@@ -105,8 +106,8 @@
         <br/>
         <div><label>Other Letters: <input type="text" id="known_letters" /></label></div>
         <div><label>Ignored Letters: <input type="text" id="ignore_letters" /></label></div>
-        <div><button id="submit_words_form" type="button">Submit</button></div>
-    </div>
+        <div><button type="submit">Submit</button></div>
+    </form>
     <div id="response"></div>
 </body>
 </html>
