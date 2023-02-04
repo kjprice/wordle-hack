@@ -18,7 +18,8 @@
         function loadWords() {
             return new Promise((res, rej) => {
                 var client = new XMLHttpRequest();
-                client.open('GET', '/words.txt');
+                const wordsUrl = `${window.location.href}words.txt`
+                client.open('GET', wordsUrl);
                 client.onreadystatechange = function() {
                     if (client.status != 200) {
                         rej(client.responseText);
