@@ -192,39 +192,52 @@
                 </div>
             </div>
             <div class="col-md-6 order-md-1">
-                <h3>Wordle Cheat Form</h3>
-                <form id="words_form" style="display: none;">
-                    <div class="row mb-3">
+                <div class="col col-12">
+                    <div class="row">
+                        <div class="col">
+                            <h3>Wordle Cheat Form</h3>
+                            <form id="words_form" style="display: none;">
+                                <div class="row mb-3">
 
-                        <label class="col-sm-5 col-form-label" for="exact_letters-1">Exact Letters Positions
-                            <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Provide known letters in their exact positions (green letters)"></i>
-                            :</label>
-                        <div class="col-sm-7"> 
-                            <input class="form-control exact_letter" type="text" id="exact_letters-1" value="p" />
-                            <input class="form-control exact_letter" type="text" id="exact_letters-2" value="a" />
-                            <input class="form-control exact_letter" type="text" id="exact_letters-3" value="" />
-                            <input class="form-control exact_letter" type="text" id="exact_letters-4" value="" />
-                            <input class="form-control exact_letter" type="text" id="exact_letters-5" value="y" />
+                                    <label class="col-sm-5 col-form-label" for="exact_letters-1">Exact Letters Positions
+                                        <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Provide known letters in their exact positions (green letters)"></i>
+                                        :</label>
+                                    <div class="col-sm-7"> 
+                                        <input class="form-control exact_letter" type="text" id="exact_letters-1" value="p" />
+                                        <input class="form-control exact_letter" type="text" id="exact_letters-2" value="a" />
+                                        <input class="form-control exact_letter" type="text" id="exact_letters-3" value="" />
+                                        <input class="form-control exact_letter" type="text" id="exact_letters-4" value="" />
+                                        <input class="form-control exact_letter" type="text" id="exact_letters-5" value="y" />
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row mb-3">
+                                    <label class="col-sm-5 col-form-label">Other Letters
+                                        <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Include any other letters where their exact position is not known (yellow letters)"></i>
+                                        :</label>
+                                    <div class="col-sm-5"> <input class="form-control" type="text" id="known_letters" value="r" /></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-5 col-form-label">Ignored Letters
+                                        <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Provide any other letters that should be excluded (grey letters)"></i>
+                                        :</label>
+                                        
+                                    <div class="col-sm-5"> <input class="form-control" type="text" id="ignore_letters" /></div>
+                                </div>
+                                <div><button type="submit" class="btn btn-primary">Submit</button></div>
+                                
+                            </form>
+                        </div><!-- col -->
+                    </div> <!-- row -->
+                </div><!-- col -->
+                <div class="col col-12">
+                    <div class="row">
+                        <div class="col">
+                            <div id="response"></div>
                         </div>
                     </div>
-                    <br/>
-                    <div class="row mb-3">
-                        <label class="col-sm-5 col-form-label">Other Letters
-                            <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Include any other letters where their exact position is not known (yellow letters)"></i>
-                            :</label>
-                        <div class="col-sm-5"> <input class="form-control" type="text" id="known_letters" value="r" /></div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-5 col-form-label">Ignored Letters
-                            <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Provide any other letters that should be excluded (grey letters)"></i>
-                            :</label>
-                            
-                        <div class="col-sm-5"> <input class="form-control" type="text" id="ignore_letters" /></div>
-                    </div>
-                    <div><button type="submit" class="btn btn-primary">Submit</button></div>
-                    
-                </form>
-            </div>
+                </div>
+            </div> <!-- col -->
         </div> <!-- row -->
         <div class="row">
             <div class="col">
