@@ -7,4 +7,4 @@ echo kj
 
 cd ../..
 
-python -m python.wordle_hack
+python -m python.wordle_hack "$@"
