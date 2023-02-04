@@ -138,16 +138,26 @@
 
                 <p>These words above include all vowels and most common consonants.</p>
                 <p>After you have a list of available letters, use the form below to cheat the game by automatically filtering through a list of five-letter words.</p>
-            </div><div class="col-lg-8 col-md-6">
+            </div>
+            <div class="col-lg-8 col-md-6">
                 <form id="words_form" style="display: none;">
-                    <div><label>Letters Positions*: <input type="text" id="exact_letters" value="pa_ty" /></label></div>
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label" for="exact_letters">Letters Positions*:</label>
+                        <div class="col-sm-5"> <input class="form-control" type="text" id="exact_letters" value="pa_ty" /></div>
+                    </div>
                     <div>
                         *Note: Provide space or underscore for unkown letters
                     </div>
                     <br/>
-                    <div><label>Other Letters: <input type="text" id="known_letters" value="r" /></label></div>
-                    <div><label>Ignored Letters: <input type="text" id="ignore_letters" /></label></div>
-                    <div><button type="submit">Submit</button></div>
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Other Letters:</label>
+                        <div class="col-sm-5"> <input class="form-control" type="text" id="known_letters" value="r" /></div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Ignored Letters:</label>
+                        <div class="col-sm-5"> <input class="form-control" type="text" id="ignore_letters" /></div>
+                    </div>
+                    <div><button type="submit" class="btn btn-primary">Submit</button></div>
                 </form>
             </div>
         </div> <!-- row -->
