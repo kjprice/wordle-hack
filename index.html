@@ -1,6 +1,4 @@
 <!-- TODO:
-    - Create text file of five-letter words
-    - Create ajax call to load file
     - Create UI for various inputs and a submit button
     - Display list of possible words
  -->
@@ -12,24 +10,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GFG</title>
+    <title>Wordle Hack</title>
     <script>
         let wordsList;
+        const ESCAPE_CHARS = new Set([' ', '_']);
+
         function loadWords() {
             return new Promise((res, rej) => {
                 var client = new XMLHttpRequest();
                 client.open('GET', '/words.txt');
                 client.onreadystatechange = function() {
                     if (client.status != 200) {
-                        console.error('OH NO')
                         rej(client.responseText);
                         return;
                     }
                     if (client.readyState == 4) {
                         res(client.responseText);
-                        console.log(client.responseText.length);
-                        console.log({client});
-                        console.log('client.readyState', client.readyState)
                     }
                 }
                 client.send();
@@ -37,17 +33,80 @@
         }
 
         function setWords(words) {
-            console.log({words});
             wordsList = words.split('\n');
             console.log(`Found ${wordsList.length} words`);
             return wordsList;
         }
+        function setupForm() {
+            document.querySelector('#words_form').style.display = 'block';
+            document.querySelector('#submit_words_form').onclick = findWords;            
+        }
+
         window.onload = () => {
-            loadWords().then(setWords);
+            loadWords().then(setWords).then(setupForm);
+        }
+
+        function findWords() {
+            const exactLetters = document.querySelector('#exact_letters').value;
+
+            if (exactLetters.length != 5) {
+                showError(`Expected exactly five letters but found "${exactLetters}" (${exactLetters.length} total letters)`);
+                return;
+            }
+
+            let goodWords = [...wordsList]; // Make a copy
+
+            // Continuously filter out words, matching letter by letter
+            const wordLetters = exactLetters.split('');
+            wordLetters.forEach((letter, i) => {
+                if (ESCAPE_CHARS.has(letter)) {
+                    return;
+                }
+
+                goodWords = goodWords.filter(goodWord => goodWord[i] === letter);
+            });
+
+            // const knownLetters = document.querySelector('#known_letters').value;
+            // const ignoreLetters = document.querySelector('#ignore_letters').value;
+
+            // if (knownLetters.length > 0)
+
+            displayWordsList(goodWords);
+        }
+
+        function displayWordsList(words) {
+            setResponse(createWordsHtmlList(words));
+        }
+
+        function createWordsHtmlList(words) {
+            return [
+                '<ul>',
+                words.map(word => `<li>${word}</li>`).join('\n'),
+                '</ul>'
+            ].join('\n');
+        }
+
+        function showError(errorText) {
+            setResponse('<div style="color: red">' + errorText + '</div>');
+        }
+
+        function setResponse(responseHtml) {
+            document.querySelector('#response').innerHTML = responseHtml;
         }
     </script>
 </head>
 <body>
     <h1>Hello World this is my first web page.</h1>
+    <div id="words_form" style="display: none;">
+        <div><label>Letters Positions*: <input type="text" id="exact_letters" value="pa_ty" /></label></div>
+        <div>
+            *Note: Provide space or underscore for unkown letters
+        </div>
+        <br/>
+        <div><label>Other Letters: <input type="text" id="known_letters" /></label></div>
+        <div><label>Ignored Letters: <input type="text" id="ignore_letters" /></label></div>
+        <div><button id="submit_words_form" type="button">Submit</button></div>
+    </div>
+    <div id="response"></div>
 </body>
 </html>
