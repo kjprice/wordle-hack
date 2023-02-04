@@ -10,6 +10,9 @@ ALL_FIVE_CHAR_WORDS = [word.lower().strip() for word in all_words if len(word) =
 # Remove duplicates
 FIVE_CHAR_WORDS = list(set(ALL_FIVE_CHAR_WORDS))
 
+# with open('words.txt', 'w') as f:
+#   f.write('\n'.join(FIVE_CHAR_WORDS))
+
 ESCAPE_CHARS = {' ', '_'}
 # print(len(FIVE_CHAR_WORDS))
 
