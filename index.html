@@ -13,9 +13,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <title>Wordle Hack</title>
+    <style>
+        .exact_letter {
+            width: 35px;
+            display: inline-block;
+        }
+    </style>
     <script>
         let wordsList;
-        const ESCAPE_CHARS = new Set([' ', '_']);
+        const VALID_LETTERS = new Set('abcdefghijklmnopqrstuvwxyz');
 
         function loadWords() {
             return new Promise((res, rej) => {
@@ -62,23 +68,56 @@
             return false;
         }
 
+        function isLetterValid(letter) {
+            if (letter === '') {
+                return true;
+            }
+
+            return VALID_LETTERS.has(letter);
+        }
+
+        function getExactLetters() {
+            const fieldIds = [
+                'exact_letters-1',
+                'exact_letters-2',
+                'exact_letters-3',
+                'exact_letters-4',
+                'exact_letters-5',
+            ]
+
+            const letters = fieldIds.map(fieldId => {
+                const inputField = document.getElementById(fieldId);
+                const fieldValue = inputField.value.toLowerCase().trim();
+                return fieldValue;
+            });
+
+            return letters;
+        }
+
         function findWords(e) {
             if (e) {
                 e.preventDefault();
             }
-            const exactLetters = document.querySelector('#exact_letters').value;
+            const exactLetters = getExactLetters();
 
             if (exactLetters.length != 5) {
                 showError(`Expected exactly five letters but found "${exactLetters}" (${exactLetters.length} total letters)`);
                 return;
             }
 
+            for (letter of exactLetters) {
+                if (!isLetterValid(letter)) {
+                    showError(`"${letter}" is not a valid letter`);
+                    return;
+                }
+            }
+
             let goodWords = [...wordsList]; // Make a copy
 
             // Continuously filter out words, matching letter by letter
-            const wordLetters = exactLetters.toLowerCase().split('');
-            wordLetters.forEach((letter, i) => {
-                if (ESCAPE_CHARS.has(letter)) {
+            exactLetters.forEach((letter, i) => {
+                if (letter === '') {
+                    // Keep all words so far
                     return;
                 }
 
@@ -148,8 +187,14 @@
                 <h3>Wordle Cheat Form</h3>
                 <form id="words_form" style="display: none;">
                     <div class="row mb-3">
-                        <label class="col-sm-5 col-form-label" for="exact_letters">Letters Positions*:</label>
-                        <div class="col-sm-5"> <input class="form-control" type="text" id="exact_letters" value="pa_ty" /></div>
+                        <label class="col-sm-5 col-form-label" for="exact_letters-1">Exact Letters Positions*:</label>
+                        <div class="col-sm-7"> 
+                            <input class="form-control exact_letter" type="text" id="exact_letters-1" value="p" />
+                            <input class="form-control exact_letter" type="text" id="exact_letters-2" value="a" />
+                            <input class="form-control exact_letter" type="text" id="exact_letters-3" value="" />
+                            <input class="form-control exact_letter" type="text" id="exact_letters-4" value="" />
+                            <input class="form-control exact_letter" type="text" id="exact_letters-5" value="y" />
+                        </div>
                     </div>
                     <div>
                         *Note: Provide space or underscore for unkown letters
