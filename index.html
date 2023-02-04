@@ -46,8 +46,20 @@
             loadWords().then(setWords).then(setupForm);
         }
 
+        function wordContainsAnyLetters(word, letters) {
+            for (const letter of letters) {
+                if (word.includes(letter)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         function findWords(e) {
-            e.preventDefault();
+            if (e) {
+                e.preventDefault();
+            }
             const exactLetters = document.querySelector('#exact_letters').value;
 
             if (exactLetters.length != 5) {
@@ -58,7 +70,7 @@
             let goodWords = [...wordsList]; // Make a copy
 
             // Continuously filter out words, matching letter by letter
-            const wordLetters = exactLetters.split('');
+            const wordLetters = exactLetters.toLowerCase().split('');
             wordLetters.forEach((letter, i) => {
                 if (ESCAPE_CHARS.has(letter)) {
                     return;
@@ -67,10 +79,18 @@
                 goodWords = goodWords.filter(goodWord => goodWord[i] === letter);
             });
 
-            // const knownLetters = document.querySelector('#known_letters').value;
-            // const ignoreLetters = document.querySelector('#ignore_letters').value;
+            const knownLetters = document.querySelector('#known_letters').value;
+            const ignoreLetters = document.querySelector('#ignore_letters').value;
 
-            // if (knownLetters.length > 0)
+            // Words must include these letters
+            if (knownLetters.length > 0) {
+                goodWords = goodWords.filter(word => wordContainsAnyLetters(word, knownLetters));
+            }
+
+            // Words must not include these letters
+            if (ignoreLetters.length > 0) {
+                goodWords = goodWords.filter(word => !wordContainsAnyLetters(word, ignoreLetters));
+            }
 
             displayWordsList(goodWords);
         }
@@ -97,14 +117,14 @@
     </script>
 </head>
 <body>
-    <h1>Hello World this is my first web page.</h1>
+    <h1>Hack Wordle!</h1>
     <form id="words_form" style="display: none;">
         <div><label>Letters Positions*: <input type="text" id="exact_letters" value="pa_ty" /></label></div>
         <div>
             *Note: Provide space or underscore for unkown letters
         </div>
         <br/>
-        <div><label>Other Letters: <input type="text" id="known_letters" /></label></div>
+        <div><label>Other Letters: <input type="text" id="known_letters" value="r" /></label></div>
         <div><label>Ignored Letters: <input type="text" id="ignore_letters" /></label></div>
         <div><button type="submit">Submit</button></div>
     </form>
