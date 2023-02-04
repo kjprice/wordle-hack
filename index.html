@@ -40,6 +40,9 @@
         function setupForm() {
             document.querySelector('#words_form').style.display = 'block';
             document.querySelector('#words_form').onsubmit = findWords;
+
+            // TODO: DELETE
+            findWords();
         }
 
         window.onload = () => {
@@ -118,6 +121,18 @@
 </head>
 <body>
     <h1>Hack Wordle!</h1>
+
+    <p>If you ever get stuck playing wordle, use this easy tool to help you out.</p>
+    <p>First, if you haven't yet provided any letters to wordle, use the following three words to quickly narrow down available letters:</p>
+    <ul>
+        <li>party</li>
+        <li>cloud</li>
+        <li>singe</li>
+    </ul>
+
+    <p>These words above include all vowels and most common consonants.</p>
+    <p>After you have a list of available letters, use the form below to cheat the game by automatically filtering through a list of five-letter words.</p>
+
     <form id="words_form" style="display: none;">
         <div><label>Letters Positions*: <input type="text" id="exact_letters" value="pa_ty" /></label></div>
         <div>
