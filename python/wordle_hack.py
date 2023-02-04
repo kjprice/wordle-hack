@@ -5,7 +5,11 @@ from nltk.corpus import words
 all_words = words.words()
 # print(len(all_words))
 
-FIVE_CHAR_WORDS = [word for word in all_words if len(word) == 5]
+ALL_FIVE_CHAR_WORDS = [word.lower().strip() for word in all_words if len(word) == 5]
+
+# Remove duplicates
+FIVE_CHAR_WORDS = list(set(ALL_FIVE_CHAR_WORDS))
+
 ESCAPE_CHARS = {' ', '_'}
 # print(len(FIVE_CHAR_WORDS))
 
