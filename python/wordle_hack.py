@@ -1,14 +1,8 @@
 import argparse
 
-from nltk.corpus import words
+from python.create_word_list import create_word_list
 
-all_words = words.words()
-# print(len(all_words))
-
-ALL_FIVE_CHAR_WORDS = [word.lower().strip() for word in all_words if len(word) == 5]
-
-# Remove duplicates
-FIVE_CHAR_WORDS = list(set(ALL_FIVE_CHAR_WORDS))
+FIVE_CHAR_WORDS = create_word_list()
 
 # with open('words.txt', 'w') as f:
 #   f.write('\n'.join(FIVE_CHAR_WORDS))
