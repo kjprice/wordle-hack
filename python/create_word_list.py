@@ -105,7 +105,7 @@ def get_all_corpora_text():
     return all_words
 
 def split_words(word):
-    words = re.split('[^a-z]*', word)
+    words = re.split('[^a-z]+', word)
     return [word for word in words if len(word) >= 5]
 
 def get_all_texts_with_more_than_five_chars():
