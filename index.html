@@ -12,7 +12,7 @@
     <title>Wordle Hack</title>
     <style>
         .exact_letter {
-            width: 35px;
+            width: 38px;
             display: inline-block;
         }
         .word_item {
@@ -87,7 +87,23 @@
         function setCssThresholds() {
             wordCountCssThresholds = [0, 2, 10, largestWordCount]
         }
-        function setupForm() {
+
+        function limitInputToOneValue(e) {
+            if (e.target.value.length < 2) {
+                return;
+            }
+            e.target.value = e.target.value[e.target.value.length -1];
+
+        }
+        function setLetterInputHandler() {
+            const inputs = document.querySelectorAll('.exact_letter');
+            inputs.forEach(input => {
+                input.addEventListener('input', limitInputToOneValue);
+                // input.addEventListener('keyup', limitInputToOneValue);
+            });
+        }
+        function setupPage() {
+            setLetterInputHandler();
             document.querySelector('#words_form').style.display = 'block';
             document.querySelector('#words_form').onsubmit = findWords;
 
@@ -98,7 +114,7 @@
         }
 
         window.onload = () => {
-            loadWords().then(setWords).then(setupForm);
+            loadWords().then(setWords).then(setupPage);
         }
 
         function wordContainsAllLetters(word, letters) {
