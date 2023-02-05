@@ -17,14 +17,15 @@
         }
     </style>
     <script>
-        let wordsList;
+        let wordsCounts;
         const VALID_LETTERS = new Set('abcdefghijklmnopqrstuvwxyz');
 
         function loadWords() {
             return new Promise((res, rej) => {
                 var client = new XMLHttpRequest();
                 const wordsUrl = `${window.location.href}words.txt`
-                client.open('GET', wordsUrl);
+                const wordsCountUrl = `words_counts.txt`
+                client.open('GET', wordsCountUrl);
                 client.onreadystatechange = function() {
                     if (client.status != 200) {
                         rej(client.responseText);
@@ -38,10 +39,15 @@
             });
         }
 
-        function setWords(words) {
-            wordsList = words.split('\n');
-            console.log(`Found ${wordsList.length} words`);
-            return wordsList;
+        function setWords(wordsCountsText) {
+            wordsCountsList = wordsCountsText.split('\n');
+            wordsCounts = {};
+            for (wordsCountLine of wordsCountsList) {
+                const [word, count] = wordsCountLine.split(' ');
+                wordsCounts[word] = parseInt(count);
+            }
+            console.log(`Found ${wordsCountsList.length} words`);
+            return wordsCounts;
         }
         function setupForm() {
             document.querySelector('#words_form').style.display = 'block';
@@ -121,7 +127,7 @@
                 }
             }
 
-            let goodWords = [...wordsList]; // Make a copy
+            let goodWords = [...Object.keys(wordsCounts)]; // Make a copy
 
             // Continuously filter out words, matching letter by letter
             exactLetters.forEach((letter, i) => {
@@ -153,11 +159,18 @@
             setResponse(createWordsHtmlList(words));
         }
 
+        function sortWords(words) {
+            return [...words].sort((word1, word2) => {
+                return wordsCounts[word2] - wordsCounts[word1];
+            });
+        }
+
         function createWordsHtmlList(words) {
+            const sortedWords = sortWords(words);
             return [
                 '<h3>Possible Words</h3>',
                 '<ul>',
-                words.map(word => `<li>${word}</li>`).join('\n'),
+                sortedWords.map(word => `<li>${word} ${wordsCounts[word]}</li>`).join('\n'),
                 '</ul>'
             ].join('\n');
         }
