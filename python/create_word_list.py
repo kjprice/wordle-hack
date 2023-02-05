@@ -17,8 +17,12 @@ from nltk.corpus import wordnet
 def word_exists(word: str) -> bool:
     return len(wordnet.synsets(word)) > 0
 
+def get_wordnet_words() -> List[str]:
+    wordnet_words = list(wordnet.all_lemma_names())
+    return [re.sub('[^a-z]*', '', word) for word in wordnet_words]
+
 def get_all_words_cleaned() -> List[str]:
-    all_words = words.words() + list(wordnet.all_lemma_names())
+    all_words = words.words() + get_wordnet_words()
 
     return [word.lower().strip() for word in all_words]
 
