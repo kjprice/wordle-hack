@@ -109,8 +109,6 @@
 
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
             const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-            // TODO: DELETE
-            findWords();
         }
 
         window.onload = () => {
@@ -193,8 +191,8 @@
                 goodWords = goodWords.filter(goodWord => goodWord[i] === letter);
             });
 
-            const knownLetters = document.querySelector('#known_letters').value;
-            const ignoreLetters = document.querySelector('#ignore_letters').value;
+            const knownLetters = document.querySelector('#known_letters').value.toLowerCase();
+            const ignoreLetters = document.querySelector('#ignore_letters').value.toLowerCase();
 
             // Words must include these letters
             if (knownLetters.length > 0) {
@@ -307,7 +305,7 @@
                                     <div class="col-sm-7"> 
                                         <input class="form-control exact_letter" type="text" id="exact_letters-1" value="" />
                                         <input class="form-control exact_letter" type="text" id="exact_letters-2" value="" />
-                                        <input class="form-control exact_letter" type="text" id="exact_letters-3" value="r" />
+                                        <input class="form-control exact_letter" type="text" id="exact_letters-3" value="" />
                                         <input class="form-control exact_letter" type="text" id="exact_letters-4" value="" />
                                         <input class="form-control exact_letter" type="text" id="exact_letters-5" value="" />
                                     </div>
@@ -317,14 +315,14 @@
                                     <label class="col-sm-5 col-form-label">Other Letters
                                         <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Include any other letters where their exact position is not known (yellow letters)"></i>
                                         :</label>
-                                    <div class="col-sm-5"> <input class="form-control" type="text" id="known_letters" value="slue" /></div>
+                                    <div class="col-sm-5"> <input class="form-control" type="text" id="known_letters" value="" /></div>
                                 </div>
                                 <div class="row mb-3">
                                     <label class="col-sm-5 col-form-label">Ignored Letters
                                         <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Provide any other letters that should be excluded (grey letters)"></i>
                                         :</label>
                                         
-                                    <div class="col-sm-5"> <input class="form-control" type="text" id="ignore_letters" /></div>
+                                    <div class="col-sm-5"> <input class="form-control" type="text" id="ignore_letters" value="" /></div>
                                 </div>
                                 <div><button type="submit" class="btn btn-primary">Submit</button></div>
                                 
