@@ -15,9 +15,40 @@
             width: 35px;
             display: inline-block;
         }
+        .word_item {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .text_frequency {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+        }
+        .text_frequency.rare {
+            background-color: yellow;
+        }
+        .text_frequency.common {
+            background-color: lightblue;
+        }
+        .text_frequency.ubiquitous {
+            background-color: darkgreen;
+        }
+
     </style>
     <script>
         let wordsCounts;
+        let largestWordCount;
+        let wordCountCssThresholds;
+        const WORD_COUNT_CSS_CLASSES = [
+            '',
+            'rare',
+            'common',
+            'ubiquitous'
+        ]
         const VALID_LETTERS = new Set('abcdefghijklmnopqrstuvwxyz');
 
         function loadWords() {
@@ -40,14 +71,21 @@
         }
 
         function setWords(wordsCountsText) {
-            wordsCountsList = wordsCountsText.split('\n');
+            wordsCountsList = wordsCountsText.trim().split('\n');
             wordsCounts = {};
             for (wordsCountLine of wordsCountsList) {
                 const [word, count] = wordsCountLine.split(' ');
                 wordsCounts[word] = parseInt(count);
             }
             console.log(`Found ${wordsCountsList.length} words`);
+
+            largestWordCount = Math.max(...Object.values(wordsCounts));
+            setCssThresholds();
             return wordsCounts;
+        }
+
+        function setCssThresholds() {
+            wordCountCssThresholds = [0, 2, 10, largestWordCount]
         }
         function setupForm() {
             document.querySelector('#words_form').style.display = 'block';
@@ -165,12 +203,33 @@
             });
         }
 
+        function wordCountCssClass(word) {
+            // TODO: Use icon instead
+            const count = wordsCounts[word];
+            for (let i = 0; i < wordCountCssThresholds.length; i++) {
+                const threshold = wordCountCssThresholds[i];
+                if (count <= threshold) {
+                    return 'text_frequency ' + WORD_COUNT_CSS_CLASSES[i];
+                }
+            }
+        }
+
+        function wordCountRarityIcon(word) {
+            const cssClass = wordCountCssClass(word);
+            
+            return `<div class="${cssClass}"></div>`;
+        }
+
+        function renderWordRowItem(word) {
+            return `<li class="word_item">${wordCountRarityIcon(word)}${word}</li>`;
+        }
+
         function createWordsHtmlList(words) {
             const sortedWords = sortWords(words);
             return [
                 '<h3>Possible Words</h3>',
                 '<ul>',
-                sortedWords.map(word => `<li>${word} ${wordsCounts[word]}</li>`).join('\n'),
+                sortedWords.map(renderWordRowItem).join('\n'),
                 '</ul>'
             ].join('\n');
         }
