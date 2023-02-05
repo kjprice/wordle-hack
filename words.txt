@@ -5410,7 +5410,9 @@ ledol
 ledum
 leech
 leeky
+leers
 leery
+lefts
 legal
 leger
 leges
@@ -5698,6 +5700,7 @@ lural
 lurch
 lured
 lurer
+lures
 lurid
 lurks
 lurky
@@ -5903,6 +5906,7 @@ mayor
 mazda
 mazed
 mazer
+mazes
 mazic
 mazur
 mazut
@@ -6290,6 +6294,7 @@ music
 musie
 musky
 mussy
+musts
 musty
 mutch
 muted
@@ -8520,6 +8525,7 @@ shore
 shorn
 short
 shote
+shots
 shott
 shout
 shove
@@ -10896,6 +10902,7 @@ wight
 wiled
 wiles
 wilga
+wills
 willy
 wilts
 wince
