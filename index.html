@@ -57,6 +57,16 @@
             loadWords().then(setWords).then(setupForm);
         }
 
+        function wordContainsAllLetters(word, letters) {
+            for (const letter of letters) {
+                if (!word.includes(letter)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         function wordContainsAnyLetters(word, letters) {
             for (const letter of letters) {
                 if (word.includes(letter)) {
@@ -128,7 +138,7 @@
 
             // Words must include these letters
             if (knownLetters.length > 0) {
-                goodWords = goodWords.filter(word => wordContainsAnyLetters(word, knownLetters));
+                goodWords = goodWords.filter(word => wordContainsAllLetters(word, knownLetters));
             }
 
             // Words must not include these letters
@@ -198,11 +208,11 @@
                                         <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Provide known letters in their exact positions (green letters)"></i>
                                         :</label>
                                     <div class="col-sm-7"> 
-                                        <input class="form-control exact_letter" type="text" id="exact_letters-1" value="p" />
-                                        <input class="form-control exact_letter" type="text" id="exact_letters-2" value="a" />
-                                        <input class="form-control exact_letter" type="text" id="exact_letters-3" value="" />
+                                        <input class="form-control exact_letter" type="text" id="exact_letters-1" value="" />
+                                        <input class="form-control exact_letter" type="text" id="exact_letters-2" value="" />
+                                        <input class="form-control exact_letter" type="text" id="exact_letters-3" value="r" />
                                         <input class="form-control exact_letter" type="text" id="exact_letters-4" value="" />
-                                        <input class="form-control exact_letter" type="text" id="exact_letters-5" value="y" />
+                                        <input class="form-control exact_letter" type="text" id="exact_letters-5" value="" />
                                     </div>
                                 </div>
                                 <br/>
@@ -210,7 +220,7 @@
                                     <label class="col-sm-5 col-form-label">Other Letters
                                         <i class="bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Include any other letters where their exact position is not known (yellow letters)"></i>
                                         :</label>
-                                    <div class="col-sm-5"> <input class="form-control" type="text" id="known_letters" value="r" /></div>
+                                    <div class="col-sm-5"> <input class="form-control" type="text" id="known_letters" value="slue" /></div>
                                 </div>
                                 <div class="row mb-3">
                                     <label class="col-sm-5 col-form-label">Ignored Letters
