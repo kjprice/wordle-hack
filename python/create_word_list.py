@@ -4,7 +4,7 @@ from typing import List
 
 # conda install -c conda-forge pattern
 from pattern.en import verbs
-
+# list(wordnet.all_lemma_names())
 from nltk.corpus import wordnet, words
 from nltk.corpus import europarl_raw
 from nltk.corpus import movie_reviews
@@ -12,12 +12,13 @@ from nltk.corpus import nps_chat
 from nltk.corpus import state_union
 from nltk.corpus import twitter_samples
 from nltk.corpus import webtext
+from nltk.corpus import wordnet
 
 def word_exists(word: str) -> bool:
     return len(wordnet.synsets(word)) > 0
 
 def get_all_words_cleaned() -> List[str]:
-    all_words = words.words()
+    all_words = words.words() + list(wordnet.all_lemma_names())
 
     return [word.lower().strip() for word in all_words]
 
