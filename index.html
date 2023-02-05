@@ -199,19 +199,28 @@
 
         function sortWords(words) {
             return [...words].sort((word1, word2) => {
-                return wordsCounts[word2] - wordsCounts[word1];
+                const countDiff = getWordCountThreshold(word2) - getWordCountThreshold(word1);
+                if (countDiff !== 0) {
+                    return countDiff;
+                }
+
+                return word1.localeCompare(word2);
             });
         }
 
-        function wordCountCssClass(word) {
-            // TODO: Use icon instead
+        function getWordCountThreshold(word) {
             const count = wordsCounts[word];
             for (let i = 0; i < wordCountCssThresholds.length; i++) {
                 const threshold = wordCountCssThresholds[i];
                 if (count <= threshold) {
-                    return 'text_frequency ' + WORD_COUNT_CSS_CLASSES[i];
+                    return i;
                 }
             }
+        }
+
+        function wordCountCssClass(word) {
+            const wordCountThreshold = getWordCountThreshold(word);
+            return 'text_frequency ' + WORD_COUNT_CSS_CLASSES[wordCountThreshold];
         }
 
         function wordCountRarityIcon(word) {
