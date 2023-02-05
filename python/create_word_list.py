@@ -17,14 +17,14 @@ from nltk.corpus import wordnet
 def word_exists(word: str) -> bool:
     return len(wordnet.synsets(word)) > 0
 
-def get_wordnet_words() -> List[str]:
-    wordnet_words = list(wordnet.all_lemma_names())
-    return [re.sub('[^a-z]*', '', word) for word in wordnet_words]
+def only_letters(word):
+    return re.sub('[^a-z]*', '', word)
+
+def clean_words(words):
+    return [only_letters(word.lower().strip()) for word in words]
 
 def get_all_words_cleaned() -> List[str]:
-    all_words = words.words() + get_wordnet_words()
-
-    return [word.lower().strip() for word in all_words]
+    return words.words() + list(wordnet.all_lemma_names())
 
 class Verb:
     def __init__(self, verb_root: str) -> None:
@@ -79,7 +79,7 @@ def get_all_verbs() -> List[str]:
     return unique_verbs
 
 def create_word_list():
-    all_words = get_all_words_cleaned() + get_all_verbs()
+    all_words = clean_words(get_all_words_cleaned() + get_all_verbs())
 
     all_five_char_words = [word for word in all_words if len(word) == 5]
 

@@ -2898,6 +2898,7 @@ grump 2
 gulfs 2
 hamas 2
 hasan 2
+hasnt 2
 hasta 2
 heigh 2
 heinz 2
@@ -4191,6 +4192,7 @@ ammer 0
 amnia 0
 amnic 0
 amnio 0
+amnot 0
 amoke 0
 amole 0
 amora 0
@@ -4641,6 +4643,7 @@ barky 0
 barny 0
 baroi 0
 barra 0
+barre 0
 barse 0
 barye 0
 basal 0
@@ -5212,7 +5215,6 @@ camas 0
 campa 0
 campe 0
 campo 0
-can't 0
 canch 0
 cando 0
 candw 0
@@ -6002,7 +6004,6 @@ domer 0
 domes 0
 domic 0
 dompt 0
-don't 0
 donar 0
 donax 0
 donee 0
@@ -6354,7 +6355,6 @@ eying 0
 eyoty 0
 eyrie 0
 eyrir 0
-f^ete 0
 fabes 0
 facer 0
 facia 0
@@ -7099,6 +7099,7 @@ hadal 0
 haddo 0
 haded 0
 hadji 0
+hadnt 0
 hafiz 0
 hafts 0
 haggy 0
@@ -7535,7 +7536,6 @@ islay 0
 islet 0
 islot 0
 ismal 0
-isn't 0
 issei 0
 issus 0
 istle 0
@@ -7880,7 +7880,6 @@ knowe 0
 knurl 0
 knute 0
 knyaz 0
-ko'ed 0
 koala 0
 koali 0
 koban 0
@@ -7892,6 +7891,7 @@ kohen 0
 kohua 0
 koila 0
 koine 0
+koing 0
 kokam 0
 kokan 0
 kokil 0
@@ -10692,7 +10692,6 @@ skets 0
 skewl 0
 skews 0
 skewy 0
-ski'd 0
 skice 0
 skidi 0
 skied 0
@@ -11364,6 +11363,7 @@ teest 0
 teety 0
 teeup 0
 tegua 0
+tehee 0
 teian 0
 teiid 0
 teind 0
@@ -12387,7 +12387,6 @@ wolfs 0
 wolof 0
 wolve 0
 womby 0
-won't 0
 wonga 0
 wonts 0
 wooer 0
@@ -12426,7 +12425,6 @@ wyler 0
 wylie 0
 wyson 0
 wyver 0
-x-ray 0
 xanax 0
 xaxis 0
 xciii 0
@@ -12444,6 +12442,7 @@ xinca 0
 xliii 0
 xlvii 0
 xoana 0
+xrays 0
 xscid 0
 xurel 0
 xviii 0
