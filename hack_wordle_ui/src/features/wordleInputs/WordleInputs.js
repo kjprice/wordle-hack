@@ -1,12 +1,32 @@
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  setExactLetter,
+  selectExactLetters,
+} from './wordleInputsSlice';
+
 import styles from "./WordleInputs.module.css";
 
+function ExactLetter(props) {
+  const { letterValue, letterPosition } = props;
+  const dispatch = useDispatch();
+  return <input
+    className={`form-control ${styles.exactLetter}`}
+    type="text"
+    onChange={e => dispatch(setExactLetter({letterPosition,
+      letterValue: e.target.value,}))}
+    value={letterValue}
+  />
+}
+
 export function WordleInputs() {
+  const exactLetters = useSelector(selectExactLetters);
   return (
     <div className="col">
       <h3>Wordle Cheat Form</h3>
       <form id="words_form">
         <div className="row mb-3">
-          <label className="col-sm-5 col-form-label" for="exact_letters-1">
+          <label className="col-sm-5 col-form-label">
             Exact Letters Positions
             <i
               className="bi-info-circle"
@@ -17,39 +37,9 @@ export function WordleInputs() {
             :
           </label>
           <div className="col-sm-7">
-            <input
-              className={`form-control ${styles.exactLetter}`}
-              type="text"
-              id="exact_letters-1"
-              value=""
-            />
-            <input
-              className={`form-control ${styles.exactLetter}`}
-              type="text"
-              id="exact_letters-2"
-              value=""
-            />
-            <input
-              className={`form-control ${styles.exactLetter}`}
-              type="text"
-              id="exact_letters-3"
-              value=""
-            />
-            <input
-              className={`form-control ${styles.exactLetter}`}
-              type="text"
-              id="exact_letters-4"
-              value=""
-            />
-            <input
-              className={`form-control ${styles.exactLetter}`}
-              type="text"
-              id="exact_letters-5"
-              value=""
-            />
+            {exactLetters.map((letterValue, letterPosition) => <ExactLetter key={`exact-letter-${letterPosition}`} letterValue={letterValue} letterPosition={letterPosition} />)}
           </div>
         </div>
-        <br />
         <div className="row mb-3">
           <label className="col-sm-5 col-form-label">
             Other Letters
