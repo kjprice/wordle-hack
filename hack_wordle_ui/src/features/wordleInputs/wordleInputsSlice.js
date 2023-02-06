@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   exactLetters: ['', '', '', '', '', ],
+  otherLetters: '',
+  ignoredLetters: '',
 };
 
 function takeLastLetter(letters) {
@@ -14,6 +16,10 @@ function takeLastLetter(letters) {
 
 function cleanLetterValue(letterValue) {
   return takeLastLetter(letterValue).toUpperCase();
+}
+
+function cleanLetters(letters) {
+  return letters.toUpperCase().trim().replace(/[^A-Z]+/, '');
 }
 
 export const wordInputSlice = createSlice({
@@ -29,11 +35,23 @@ export const wordInputSlice = createSlice({
       state.exactLetters = [...state.exactLetters];
       state.exactLetters[letterPosition] = cleanLetterValue(letterValue);
     },
+    setOtherLetters: (state, action) => {
+      const otherLetters = action.payload;
+
+      state.otherLetters = cleanLetters(otherLetters);
+    },
+    setIgnoredLetters: (state, action) => {
+      const ignoredLetters = action.payload;
+
+      state.ignoredLetters = cleanLetters(ignoredLetters);
+    },
   },
 });
 
-export const { setExactLetter } = wordInputSlice.actions;
+export const { setExactLetter, setOtherLetters, setIgnoredLetters } = wordInputSlice.actions;
 
 export const selectExactLetters = (state) => state.wordInput.exactLetters;
+export const selectOtherLetters = (state) => state.wordInput.otherLetters;
+export const selectIgnoredLetters = (state) => state.wordInput.otherLetters;
 
 export default wordInputSlice.reducer;

@@ -5,7 +5,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
-import { setExactLetter, selectExactLetters } from "./wordleInputsSlice";
+import { setExactLetter, 
+  setOtherLetters, setIgnoredLetters,
+  selectExactLetters,
+  selectOtherLetters, 
+  selectIgnoredLetters
+ } from "./wordleInputsSlice";
 
 import HelpIcon from '../../sharedComponents/helpIcon';
 
@@ -30,6 +35,9 @@ function ExactLetter(props) {
 
 export function WordleInputs() {
   const exactLetters = useSelector(selectExactLetters);
+  const otherLetters = useSelector(selectOtherLetters);
+  const ignoredLetters = useSelector(selectIgnoredLetters);
+  const dispatch = useDispatch();
   return (
     <Col>
       <h3>Wordle Cheat Form</h3>
@@ -64,7 +72,8 @@ export function WordleInputs() {
               className="form-control"
               type="text"
               id="known_letters"
-              // value=""
+              value={ignoredLetters}
+              onChange={e => dispatch(setOtherLetters(e.target.value))}
             />
           </Col>
         </Form.Group>
@@ -83,7 +92,8 @@ export function WordleInputs() {
               className="form-control"
               type="text"
               id="ignore_letters"
-              // value=""
+              value={otherLetters}
+              onChange={e => dispatch(setIgnoredLetters(e.target.value))}
             />
           </Col>
         </Form.Group>
