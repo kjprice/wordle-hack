@@ -1,14 +1,27 @@
 import React from 'react';
 import { Counter } from './features/counter/Counter';
+import { WordleInputs } from './features/wordleInputs/WordleInputs';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Counter />
-      </header>
-    </div>
+    <>
+      <div className="col col-12">
+          <div className="row">
+              <div className="col">
+                  <WordleInputs />
+              </div>
+          </div>
+      </div>
+      <div className="col col-12">
+          <div className="row">
+              <div className="col">
+                  <div id="response"></div>
+              </div>
+          </div>
+      </div>
+      <Counter />
+    </>
   );
 }
 
