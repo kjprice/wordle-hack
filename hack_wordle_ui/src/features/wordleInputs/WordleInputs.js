@@ -1,94 +1,98 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  setExactLetter,
-  selectExactLetters,
-} from './wordleInputsSlice';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+
+import { setExactLetter, selectExactLetters } from "./wordleInputsSlice";
+
+import HelpIcon from '../../sharedComponents/helpIcon';
 
 import styles from "./WordleInputs.module.css";
 
 function ExactLetter(props) {
   const { letterValue, letterPosition } = props;
   const dispatch = useDispatch();
-  return <input
-    className={`form-control ${styles.exactLetter}`}
-    type="text"
-    onChange={e => dispatch(setExactLetter({letterPosition,
-      letterValue: e.target.value,}))}
-    value={letterValue}
-  />
+  return (
+    <input
+      className={`form-control ${styles.exactLetter}`}
+      type="text"
+      onChange={(e) =>
+        dispatch(
+          setExactLetter({ letterPosition, letterValue: e.target.value })
+        )
+      }
+      value={letterValue}
+    />
+  );
 }
 
 export function WordleInputs() {
   const exactLetters = useSelector(selectExactLetters);
   return (
-    <div className="col">
+    <Col>
       <h3>Wordle Cheat Form</h3>
-      <form id="words_form">
-        <div className="row mb-3">
-          <label className="col-sm-5 col-form-label">
+      <Form id="words_form">
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="5">
             Exact Letters Positions
-            <i
-              className="bi-info-circle"
-              data-bs-toggle="tooltip"
-              data-bs-placement="top"
-              data-bs-title="Provide known letters in their exact positions (green letters)"
-            ></i>
+            {' '}
+            <HelpIcon id="exact-letters" text="Provide known letters in their exact positions (green letters)" />
             :
-          </label>
-          <div className="col-sm-7">
-            {exactLetters.map((letterValue, letterPosition) => <ExactLetter key={`exact-letter-${letterPosition}`} letterValue={letterValue} letterPosition={letterPosition} />)}
-          </div>
-        </div>
-        <div className="row mb-3">
-          <label className="col-sm-5 col-form-label">
+          </Form.Label>
+          <Col sm={7}>
+            {exactLetters.map((letterValue, letterPosition) => (
+              <ExactLetter
+                key={`exact-letter-${letterPosition}`}
+                letterValue={letterValue}
+                letterPosition={letterPosition}
+              />
+            ))}
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="5">
             Other Letters
-            <i
-              className="bi-info-circle"
-              data-bs-toggle="tooltip"
-              data-bs-placement="top"
-              data-bs-title="Include any other letters where their exact position is not known (yellow letters)"
-            ></i>
+            {' '}
+            <HelpIcon id="other-letters" text="Include any other letters where their exact position is not known (yellow letters)" />
             :
-          </label>
-          <div className="col-sm-5">
+          </Form.Label>
+          <Col sm={5}>
             {" "}
             <input
               className="form-control"
               type="text"
               id="known_letters"
-              value=""
+              // value=""
             />
-          </div>
-        </div>
-        <div className="row mb-3">
-          <label className="col-sm-5 col-form-label">
-            Ignored Letters
-            <i
-              className="bi-info-circle"
-              data-bs-toggle="tooltip"
-              data-bs-placement="top"
-              data-bs-title="Provide any other letters that should be excluded (grey letters)"
-            ></i>
-            :
-          </label>
+          </Col>
+        </Form.Group>
 
-          <div className="col-sm-5">
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="5">
+            Ignored Letters
+            {' '}
+            <HelpIcon id="ignored-letters" text="Provide any other letters that should be excluded (grey letters)" />
+            :
+          </Form.Label>
+
+          <Col sm={5}>
             {" "}
             <input
               className="form-control"
               type="text"
               id="ignore_letters"
-              value=""
+              // value=""
             />
-          </div>
-        </div>
+          </Col>
+        </Form.Group>
         <div>
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>
-      </form>
-    </div>
+      </Form>
+    </Col>
   );
 }
