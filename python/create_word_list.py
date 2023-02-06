@@ -1,4 +1,5 @@
 from collections import Counter
+import os
 import re
 from typing import List
 
@@ -138,7 +139,7 @@ if __name__ == '__main__':
     # with open('words.txt', 'w') as f:
     #     f.write('\n'.join(word_list))
     words_counts = get_all_words_with_count_frequencies()
-    words_count_filepath = 'words_counts.txt'
+    words_count_filepath = os.path.join('hack_wordle_ui', 'public', 'words_counts.txt')
     with open(words_count_filepath, 'w') as f:
         f.write('')
     with open(words_count_filepath, 'a') as f:
