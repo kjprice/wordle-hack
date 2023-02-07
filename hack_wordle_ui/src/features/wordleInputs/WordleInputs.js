@@ -73,7 +73,7 @@ export function WordleInputs() {
               type="text"
               id="known_letters"
               value={ignoredLetters}
-              onChange={e => dispatch(setOtherLetters(e.target.value))}
+              onChange={e => dispatch(setIgnoredLetters(e.target.value))}
             />
           </Col>
         </Form.Group>
@@ -93,7 +93,7 @@ export function WordleInputs() {
               type="text"
               id="ignore_letters"
               value={otherLetters}
-              onChange={e => dispatch(setIgnoredLetters(e.target.value))}
+              onChange={e => dispatch(setOtherLetters(e.target.value))}
             />
           </Col>
         </Form.Group>

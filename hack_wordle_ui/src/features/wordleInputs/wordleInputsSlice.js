@@ -52,6 +52,6 @@ export const { setExactLetter, setOtherLetters, setIgnoredLetters } = wordInputS
 
 export const selectExactLetters = (state) => state.wordInput.exactLetters;
 export const selectOtherLetters = (state) => state.wordInput.otherLetters;
-export const selectIgnoredLetters = (state) => state.wordInput.otherLetters;
+export const selectIgnoredLetters = (state) => state.wordInput.ignoredLetters;
 
 export default wordInputSlice.reducer;
