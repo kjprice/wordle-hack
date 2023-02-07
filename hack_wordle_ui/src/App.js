@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Counter } from './features/counter/Counter';
 import { WordleInputs } from './features/wordleInputs/WordleInputs';
 import loadWords from './api/loadWords';
 
@@ -24,7 +23,6 @@ function App() {
               </div>
           </div>
       </div>
-      <Counter />
     </>
   );
 }
