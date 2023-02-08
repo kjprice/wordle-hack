@@ -6,6 +6,7 @@ const initialState = {
   wordCountCssThresholds: [],
   foundWords: [],
   errorText: null,
+  shouldRemoveSuggestedLetters: true,
 };
 
 function getWordsCountsMap(wordsCountsList) {
@@ -39,13 +40,17 @@ export const wordResultsSlice = createSlice({
       state.largestWordCount = largestWordCount;
       state.wordCountCssThresholds = [0, 2, 10, largestWordCount];
     },
+    setShouldRemoveSuggestedLetters: (state, action) => {
+      state.shouldRemoveSuggestedLetters = !state.shouldRemoveSuggestedLetters;
+    }
   },
 });
 
-export const { setFoundWords, setWordsList } = wordResultsSlice.actions;
+export const { setFoundWords, setWordsList, setShouldRemoveSuggestedLetters } = wordResultsSlice.actions;
 
 export const selectFoundWords = (state) => state.wordResults.foundWords;
 export const selectWordsCounts = (state) => state.wordResults.wordsCounts;
 export const selectWordCountCssThresholds = (state) => state.wordResults.wordCountCssThresholds;
+export const selectShouldRemoveSuggestedLetters = (state) => state.wordResults.shouldRemoveSuggestedLetters;
 
 export default wordResultsSlice.reducer;
