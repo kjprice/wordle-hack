@@ -7,20 +7,21 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
 import {
+  setFoundWords,
+  setShouldRemoveSuggestedLetters,
   setExactLetter,
   setOtherLetters,
   setIgnoredLetters,
   selectExactLetters,
   selectOtherLetters,
   selectIgnoredLetters,
+  selectShouldRemoveSuggestedLetters,
+  selectWordsCounts,
 } from "./wordleInputsSlice";
 
-import {
-  setFoundWords,
-  selectWordsCounts,
-} from "../wordsResults/wordResultsSlice";
-
 import findWords from "../wordsResults/findWords";
+
+import { SUGGESTED_LETTERS } from "../../config";
 
 import HelpIcon from "../../sharedComponents/helpIcon";
 
@@ -43,7 +44,18 @@ function ExactLetter(props) {
   );
 }
 
+function getAllIgnoredLetters(ignoredLetters, exactLetters, otherLetters, shouldRemoveSuggestedLetters) {
+  let allIgnoredLetters = ignoredLetters.split('');
+  if (shouldRemoveSuggestedLetters) {
+    allIgnoredLetters = allIgnoredLetters.concat(SUGGESTED_LETTERS);
+  }
+  const lettersToKeep = new Set([...exactLetters, ...otherLetters.split('')].map(l => l.toLowerCase()))
+  allIgnoredLetters = allIgnoredLetters.map(l => l.toLowerCase()).filter(letter => !lettersToKeep.has(letter));
+  return allIgnoredLetters.join('');
+}
+
 export function WordleInputs() {
+  const shouldRemoveSuggestedLetters = useSelector(selectShouldRemoveSuggestedLetters);
   const exactLetters = useSelector(selectExactLetters);
   const otherLetters = useSelector(selectOtherLetters);
   const ignoredLetters = useSelector(selectIgnoredLetters);
@@ -62,7 +74,7 @@ export function WordleInputs() {
                 wordsList,
                 exactLetters,
                 otherLetters,
-                ignoredLetters
+                getAllIgnoredLetters(ignoredLetters, exactLetters, otherLetters, shouldRemoveSuggestedLetters)
               )
             )
           )
@@ -129,6 +141,13 @@ export function WordleInputs() {
             />
           </Col>
         </Form.Group>
+        <Form.Check 
+          type="switch"
+          id="custom-switch"
+          label="Filter Suggested Words"
+          checked={shouldRemoveSuggestedLetters}
+          onChange={() => dispatch(setShouldRemoveSuggestedLetters())}
+        />
         <div>
           <Button type="submit" variant="primary">
             Submit
