@@ -1,0 +1,38 @@
+.keyboardRowContainer {
+  float: left;
+  position: relative;
+  left: 50%;
+}
+.keyboardRowFixer {
+  float: left;
+  position: relative;
+  left: -50%;
+  /* clear: both; */
+}
+.keyboardRow {
+  clear: both;
+}
+
+.keyboardLetter {
+  float: left;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 10%;
+  margin: 3px;
+  font-weight: bold;
+}
+
+.letterColorGreen {
+  background-color: green;
+  color: white;
+}
+
+.letterColorYellow {
+  background-color: #e4cf3c;
+  color: white;
+}
+
+.letterColorGray {
+  background-color: gray;
+  color: white;
+}
