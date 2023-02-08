@@ -18,8 +18,7 @@ export function wordContainsAnyLetters(word, letters) {
   return false;
 }
 
-function findWords(e, wordsCounts, exactLetters, otherLetters, ignoredLetters) {
-  e.preventDefault();
+function findWords(wordsCounts, exactLetters, otherLetters, ignoredLetters) {
   let goodWords = [...Object.keys(wordsCounts)]; // Make a copy
 
   // Continuously filter out words, matching letter by letter

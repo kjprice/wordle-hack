@@ -19,10 +19,6 @@ import {
   selectWordsCounts,
 } from "./wordleInputsSlice";
 
-import findWords from "../wordsResults/findWords";
-
-import { SUGGESTED_LETTERS } from "../../config";
-
 import HelpIcon from "../../sharedComponents/helpIcon";
 
 import styles from "./WordleInputs.module.css";
@@ -44,16 +40,6 @@ function ExactLetter(props) {
   );
 }
 
-function getAllIgnoredLetters(ignoredLetters, exactLetters, otherLetters, shouldRemoveSuggestedLetters) {
-  let allIgnoredLetters = ignoredLetters.split('');
-  if (shouldRemoveSuggestedLetters) {
-    allIgnoredLetters = allIgnoredLetters.concat(SUGGESTED_LETTERS);
-  }
-  const lettersToKeep = new Set([...exactLetters, ...otherLetters.split('')].map(l => l.toLowerCase()))
-  allIgnoredLetters = allIgnoredLetters.map(l => l.toLowerCase()).filter(letter => !lettersToKeep.has(letter));
-  return allIgnoredLetters.join('');
-}
-
 export function WordleInputs() {
   const shouldRemoveSuggestedLetters = useSelector(selectShouldRemoveSuggestedLetters);
   const exactLetters = useSelector(selectExactLetters);
@@ -66,18 +52,7 @@ export function WordleInputs() {
       <h3>Wordle Cheat Form</h3>
       <Form
         id="words_form"
-        onSubmit={(e) =>
-          dispatch(
-            setFoundWords(
-              findWords(
-                e,
-                wordsList,
-                exactLetters,
-                otherLetters,
-                getAllIgnoredLetters(ignoredLetters, exactLetters, otherLetters, shouldRemoveSuggestedLetters)
-              )
-            )
-          )
+        onSubmit={(e) => e.preventDefault()
         }
       >
         <Form.Group as={Row} className="mb-3">

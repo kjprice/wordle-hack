@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectExactLetters,
   selectOtherLetters,
-  selectIgnoredLetters,
+  selectAllIgnoredLetters,
+
 } from "../wordleInputs/wordleInputsSlice";
 
 import styles from "./WordleKeyboard.module.css";
@@ -90,9 +91,9 @@ function getLetterColorRows(exactLetters, otherLetters, ignoredLetters) {
 function WordleKeyboard() {
   const exactLetters = useSelector(selectExactLetters);
   const otherLetters = useSelector(selectOtherLetters);
-  const ignoredLetters = useSelector(selectIgnoredLetters);
+  const allIgnoredLetters = useSelector(selectAllIgnoredLetters);
 
-  const letterColorRows = getLetterColorRows(exactLetters, otherLetters, ignoredLetters);
+  const letterColorRows = getLetterColorRows(exactLetters, otherLetters, allIgnoredLetters.toUpperCase());
 
   return (
     <div>
