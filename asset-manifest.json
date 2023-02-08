@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/wordle-hack/static/css/main.9486f510.css",
-    "main.js": "/wordle-hack/static/js/main.3dfe532a.js",
+    "main.js": "/wordle-hack/static/js/main.c7b1984d.js",
     "static/js/787.3221a3c1.chunk.js": "/wordle-hack/static/js/787.3221a3c1.chunk.js",
     "index.html": "/wordle-hack/index.html",
     "main.9486f510.css.map": "/wordle-hack/static/css/main.9486f510.css.map",
-    "main.3dfe532a.js.map": "/wordle-hack/static/js/main.3dfe532a.js.map",
+    "main.c7b1984d.js.map": "/wordle-hack/static/js/main.c7b1984d.js.map",
     "787.3221a3c1.chunk.js.map": "/wordle-hack/static/js/787.3221a3c1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9486f510.css",
-    "static/js/main.3dfe532a.js"
+    "static/js/main.c7b1984d.js"
   ]
 }
