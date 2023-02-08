@@ -127,7 +127,7 @@ function WordsResults() {
       <Form.Check 
         type="switch"
         id="custom-switch"
-        label="Check this switch"
+        label="Filter Suggested Words"
         checked={shouldRemoveSuggestedLetters}
         onChange={() => dispatch(setShouldRemoveSuggestedLetters())}
       />
