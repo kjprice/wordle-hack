@@ -1,28 +1,24 @@
-import React from 'react';
+import React from "react";
 
-import { WordleInputs } from './features/wordleInputs/WordleInputs';
-import WordsResults from './features/wordsResults/WordsResults';
-import loadWords from './api/loadWords';
+import { WordleInputs } from "./features/wordleInputs/WordleInputs";
+import WordsResults from "./features/wordsResults/WordsResults";
+import loadWords from "./api/loadWords";
 
-import './App.css';
+import "./App.css";
 
 function App() {
   loadWords();
   return (
     <>
-      <div className="col col-12">
-          <div className="row">
-              <div className="col">
-                  <WordleInputs />
-              </div>
-          </div>
+      <div className="row">
+        <div className="col">
+          <WordleInputs />
+        </div>
       </div>
-      <div className="col col-12">
-          <div className="row">
-              <div className="col">
-                  <WordsResults />
-              </div>
-          </div>
+      <div style={{ marginTop: 40 }} className="row">
+        <div className="col">
+          <WordsResults />
+        </div>
       </div>
     </>
   );
