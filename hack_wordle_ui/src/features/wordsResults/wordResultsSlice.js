@@ -23,7 +23,7 @@ export const wordResultsSlice = createSlice({
   initialState,
   reducers: {
     setFoundWords: (state, action) => {
-      const { foundWords } = action.payload;
+      const foundWords = action.payload;
 
       state.errorText = null;
       state.foundWords = foundWords;
@@ -46,5 +46,6 @@ export const { setFoundWords, setWordsList } = wordResultsSlice.actions;
 
 export const selectFoundWords = (state) => state.wordResults.foundWords;
 export const selectWordsCounts = (state) => state.wordResults.wordsCounts;
+export const selectWordCountCssThresholds = (state) => state.wordResults.wordCountCssThresholds;
 
 export default wordResultsSlice.reducer;

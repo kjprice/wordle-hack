@@ -20,6 +20,8 @@ import {
   selectWordsCounts,
 } from "../wordsResults/wordResultsSlice";
 
+import findWords from "../wordsResults/findWords";
+
 import HelpIcon from "../../sharedComponents/helpIcon";
 
 import styles from "./WordleInputs.module.css";
@@ -39,11 +41,6 @@ function ExactLetter(props) {
       value={letterValue}
     />
   );
-}
-
-function findWords(e, wordsList, exactLetters, otherLetters, ignoredLetters) {
-  e.preventDefault();
-  console.log("yay");
 }
 
 export function WordleInputs() {

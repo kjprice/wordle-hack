@@ -1,0 +1,22 @@
+.wordItem {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.textFrequency {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+}
+.textFrequency.rare {
+  background-color: yellow;
+}
+.textFrequency.common {
+  background-color: lightblue;
+}
+.textFrequency.ubiquitous {
+  background-color: darkgreen;
+}
