@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   wordsCounts: {},
@@ -8,32 +8,29 @@ const initialState = {
   errorText: null,
 };
 
-
 function getWordsCountsMap(wordsCountsList) {
   const wordsCounts = {};
   for (const wordsCountLine of wordsCountsList) {
-      const [word, count] = wordsCountLine.split(' ');
-      wordsCounts[word] = parseInt(count);
+    const [word, count] = wordsCountLine.split(" ");
+    wordsCounts[word] = parseInt(count);
   }
 
   return wordsCounts;
 }
 
 export const wordResultsSlice = createSlice({
-  name: 'wordResults',
+  name: "wordResults",
   initialState,
   reducers: {
     setFoundWords: (state, action) => {
-      const {
-        foundWords,
-      } = action.payload;
+      const { foundWords } = action.payload;
 
       state.errorText = null;
       state.foundWords = foundWords;
     },
     setWordsList: (state, action) => {
       const wordsCountsText = action.payload;
-      const wordsCountsList = wordsCountsText.trim().split('\n');
+      const wordsCountsList = wordsCountsText.trim().split("\n");
       const wordsCounts = getWordsCountsMap(wordsCountsList);
 
       const largestWordCount = Math.max(...Object.values(wordsCounts));
