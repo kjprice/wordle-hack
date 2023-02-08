@@ -131,6 +131,7 @@ function WordsResults() {
         checked={shouldRemoveSuggestedLetters}
         onChange={() => dispatch(setShouldRemoveSuggestedLetters())}
       />
+      <p>Found {filteredWords.length} words.</p>
       <ul>
         {filteredWords.map((word) => (
           <WordRowItem
