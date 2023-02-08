@@ -1,5 +1,5 @@
 function wordContainsAllLetters(word, letters) {
-  for (const letter of letters) {
+  for (const letter of letters.toLowerCase()) {
     if (!word.includes(letter)) {
       return false;
     }
@@ -8,8 +8,8 @@ function wordContainsAllLetters(word, letters) {
   return true;
 }
 
-function wordContainsAnyLetters(word, letters) {
-  for (const letter of letters) {
+export function wordContainsAnyLetters(word, letters) {
+  for (const letter of letters.toLowerCase()) {
     if (word.includes(letter)) {
       return true;
     }

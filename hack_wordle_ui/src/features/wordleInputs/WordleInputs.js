@@ -102,8 +102,8 @@ export function WordleInputs() {
               className="form-control"
               type="text"
               id="known_letters"
-              value={ignoredLetters}
-              onChange={(e) => dispatch(setIgnoredLetters(e.target.value))}
+              value={otherLetters}
+              onChange={(e) => dispatch(setOtherLetters(e.target.value))}
             />
           </Col>
         </Form.Group>
@@ -124,8 +124,8 @@ export function WordleInputs() {
               className="form-control"
               type="text"
               id="ignore_letters"
-              value={otherLetters}
-              onChange={(e) => dispatch(setOtherLetters(e.target.value))}
+              value={ignoredLetters}
+              onChange={(e) => dispatch(setIgnoredLetters(e.target.value))}
             />
           </Col>
         </Form.Group>
