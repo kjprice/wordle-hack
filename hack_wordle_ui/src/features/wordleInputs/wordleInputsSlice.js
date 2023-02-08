@@ -15,7 +15,7 @@ function takeLastLetter(letters) {
 }
 
 function cleanLetterValue(letterValue) {
-  return takeLastLetter(letterValue).toUpperCase();
+  return takeLastLetter(cleanLetters(letterValue));
 }
 
 function cleanLetters(letters) {
