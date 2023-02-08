@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import {
   setWordsList, 
-} from '../app/wordsListSlice';
+} from '../features/wordsResults/wordResultsSlice';
 
 
 function fetchWords() {
