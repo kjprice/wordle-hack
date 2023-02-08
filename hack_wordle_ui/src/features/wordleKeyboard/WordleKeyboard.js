@@ -34,7 +34,6 @@ function getCssClassFromColor(color) {
 function KeyboardField(props) {
   const { letterColor } = props;
   const className = `${styles.keyboardLetter} ${getCssClassFromColor(letterColor.color)}`
-  console.log('getCssClassFromColor(letterColor.color)', getCssClassFromColor(letterColor.color));
   return <div className={className}>{letterColor.letter}</div>;
 }
 
@@ -92,9 +91,6 @@ function WordleKeyboard() {
   const exactLetters = useSelector(selectExactLetters);
   const otherLetters = useSelector(selectOtherLetters);
   const ignoredLetters = useSelector(selectIgnoredLetters);
-  console.log({exactLetters});
-  console.log({otherLetters});
-  console.log({ignoredLetters});
 
   const letterColorRows = getLetterColorRows(exactLetters, otherLetters, ignoredLetters);
 
