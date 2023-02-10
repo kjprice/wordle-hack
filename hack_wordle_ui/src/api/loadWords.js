@@ -7,7 +7,7 @@ import {
 function fetchWords() {
   return new Promise((res, rej) => {
     var client = new XMLHttpRequest();
-    const wordsCountUrl = `words_counts.txt`;
+    const wordsCountUrl = process.env.PUBLIC_URL + `/words_counts.txt`;
     client.open("GET", wordsCountUrl);
     client.onreadystatechange = function () {
       if (client.status !== 200) {
